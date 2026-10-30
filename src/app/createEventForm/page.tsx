@@ -4,13 +4,13 @@ import { type FormEvent, type ReactNode, useState } from "react";
 import { Button, Label, TextArea } from "@heroui/react";
 
 const eventTypes = [
-  "Donation",
-  "Cleanup",
-  "Plantation",
-  "Winter Relief",
-  "Food Drive",
-  "Health Camp",
-  "Free Education",
+    "Donation",
+    "Cleanup",
+    "Plantation",
+    "Winter Relief",
+    "Food Drive",
+    "Health Camp",
+    "Free Education",
 ];
 
 const photoPresets = [
@@ -34,16 +34,25 @@ const CreateEventForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit =async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = Object.fromEntries(new FormData(event.currentTarget).entries());
-
-        console.log("Community event form data:", formData);
         setSubmitted(true);
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/form-datas`,{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(formData)
+        })
+
+        const data = await res.json()
+       
     };
 
     return (
-        <main className="create-event-form min-h-screen bg-slate-50 px-4 py-10 sm:px-6 sm:py-14">
+        <main className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 sm:py-14">
             <div className="mx-auto max-w-[630px] rounded-xl border border-slate-200 bg-white px-5 py-7 shadow-[0_8px_24px_rgba(15,23,42,0.08)] sm:px-9 sm:py-8">
                 <div className="mb-8">
                     <span className="inline-flex items-center gap-2 rounded-full bg-violet-50 px-3 py-1 text-xs font-bold text-violet-600">
@@ -69,6 +78,8 @@ const CreateEventForm = () => {
                                 id="event-title"
                                 name="title"
                                 required
+                                pattern="^[^0-9]*$"
+                                title="Numbers are not allowed in the event title"
                                 placeholder="e.g. Winter Clothes Distribution – Mirpur 10, Dhaka"
                                 className="event-form-input"
                             />
@@ -113,6 +124,8 @@ const CreateEventForm = () => {
                                 id="event-location"
                                 name="location"
                                 required
+                                 pattern="^[^0-9]*$"
+  title="Numbers are not allowed in the event title"
                                 placeholder="e.g. Mohammadpur Town Hall, Dhaka"
                                 className="event-form-input"
                             />
