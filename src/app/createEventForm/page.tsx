@@ -14,7 +14,7 @@ const eventTypes = [
 ];
 
 const photoPresets = [
-    { label: "Winter Clothes", url: "https://images.unsplash.com/photo-1489681838810-b7db9d6f1f75" },
+    { label: "Winter Clothes", url: "https://unsplash.com/photos/red-and-yellow-floral-long-sleeve-shirt-1ZThgL0DIsA" },
     { label: "Blanket Relief", url: "https://images.unsplash.com/photo-1583845112203-454c1b6c8c28" },
     { label: "Cleanup", url: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b" },
     { label: "Tree Plantation", url: "https://images.unsplash.com/photo-1511497584788-876760111969" },
