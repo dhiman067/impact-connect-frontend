@@ -4,6 +4,7 @@ import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { Button, Label } from "@heroui/react";
 import { signUp } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -61,6 +62,7 @@ const SignUpPage = () => {
 
     if(data){
         console.log(data);
+        redirect('/')
     }
     else{
         console.log(error);

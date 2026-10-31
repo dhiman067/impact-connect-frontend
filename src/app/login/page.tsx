@@ -4,9 +4,11 @@ import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { Button, Label } from "@heroui/react";
 import { signIn } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async(event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,9 +24,10 @@ const LoginPage = () => {
 
     if(data){
       console.log(data);
+      redirect('/')
     }
     else{
-      console.log(error);
+      setErrorMessage(error?.message as string)
     }
   };
 
@@ -59,6 +62,7 @@ const LoginPage = () => {
           <p className="mt-2 text-sm text-slate-500">
             Sign in to organize and join community drives
           </p>
+          <p className="text-red-500 font-extralight">{errorMessage}</p>
         </div>
 
         <form className="mt-9 space-y-5" onSubmit={handleSubmit}>
