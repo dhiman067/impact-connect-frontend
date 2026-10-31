@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { Button, Label } from "@heroui/react";
+import { signUp } from "@/lib/auth-client";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,7 @@ const SignUpPage = () => {
     return "";
   };
 
-  const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async(event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -49,9 +50,22 @@ const SignUpPage = () => {
       return;
     }
 
-    const signUpData = Object.fromEntries(formData.entries());
+    const signUpData = Object.fromEntries(formData.entries()) as {name:string, email:string, password:string}
 
-    console.log("Signup data:", signUpData);
+    // console.log("Signup data:", signUpData);
+
+
+    const {data,error} = await signUp.email({
+        ...signUpData
+    })
+
+    if(data){
+        console.log(data);
+    }
+    else{
+        console.log(error);
+    }
+
   };
 
   return (
