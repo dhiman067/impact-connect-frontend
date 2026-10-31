@@ -1,6 +1,14 @@
+'use client'
+import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 
+
 const Navbar = () => {
+
+const { data: session, error } =  useSession()
+const user = session?.user
+console.log(user);
+
   return (
     <header className="border-b border-violet-200/70 bg-white/95 shadow-sm backdrop-blur">
       <nav
@@ -43,12 +51,21 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <Link
+        
+
+        {
+          user? <button
+         onClick={()=> signOut()}
+          className="rounded-full bg-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+        >
+          signout
+        </button> : <Link
           href="/login"
           className="rounded-full bg-violet-700 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
         >
           Login
         </Link>
+        }
       </nav>
     </header>
   );

@@ -3,20 +3,29 @@
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { Button, Label } from "@heroui/react";
+import { signIn } from "@/lib/auth-client";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const loginData = {
-      email: formData.get("email"),
-      password: formData.get("password"),
-    };
+    const loginData = Object.fromEntries(formData.entries())as{email:string, password:string}
 
     console.log("Login data:", loginData);
+
+    const { data, error } = await signIn.email({
+      ...loginData
+    })
+
+    if(data){
+      console.log(data);
+    }
+    else{
+      console.log(error);
+    }
   };
 
   return (
