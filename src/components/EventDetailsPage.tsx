@@ -67,7 +67,7 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
                 </svg>
               </span>
               <div>
-                <p className="text-sm font-bold text-violet-950">Join as  Volunteers</p>
+                <p className="text-sm font-bold text-violet-950">Join As  Volunteers</p>
                 <p className="text-xs text-slate-500">Sign up to join hands for this event</p>
               </div>
             </div>
