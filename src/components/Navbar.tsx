@@ -38,9 +38,9 @@ const Navbar = () => {
           </span>
           <div>
             <span className="text-lg font-bold tracking-tight text-violet-950">
-            Impact<span className="text-violet-600">Connect</span>
-          </span>
-          <p className="text-slate-500 text-xs">Creating Impact</p>
+              Impact<span className="text-violet-600">Connect</span>
+            </span>
+            <p className="text-slate-500 text-xs">Creating Impact</p>
           </div>
         </Link>
 
@@ -75,8 +75,8 @@ const Navbar = () => {
                   </span>
                 </li>
                 <li><Link href={'/createEventForm'} type="button">＋ Create Event</Link></li>
-                <li><button type="button">⚙ Manage Events</button></li>
-                <li><button type="button">✓ Joined Events</button></li>
+                <li><Link href={'/manageEvents'}>⚙ Manage Events</Link></li>
+                <li><Link href={'joinedEvents'}>✓ Joined Events</Link></li>
                 <li className="mt-1 border-t border-violet-100 pt-1">
                   <button type="button" onClick={() => signOut()} className="text-red-500 hover:bg-red-50">
                     ↪ LogOut
@@ -112,15 +112,15 @@ const Navbar = () => {
                         {avatar}
                         <span className="min-w-0 text-left">
                           <strong className="block truncate text-violet-950">{user.name}</strong>
-                          
+
                         </span>
                       </button>
                     </li>
                     {isProfileOpen && (
                       <li className="border-t border-violet-100 pt-1">
-                        <button type="button">＋ Create Event</button>
-                        <button type="button">⚙ Manage Events</button>
-                        <button type="button">✓ Joined Events</button>
+                        <li><Link href={'/createEventForm'} type="button">＋ Create Event</Link></li>
+                        <li><Link href={'/manageEvents'}>⚙ Manage Events</Link></li>
+                        <li><Link href={'joinedEvents'}>✓ Joined Events</Link></li>
                         <button type="button" onClick={() => signOut()} className="text-red-500 hover:bg-red-50">
                           ↪ LogOut
                         </button>
