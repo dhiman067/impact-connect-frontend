@@ -2,6 +2,7 @@
 
 import { type FormEvent, type ReactNode, useState } from "react";
 import { Button, Label, TextArea } from "@heroui/react";
+import { useSession } from "@/lib/auth-client";
 
 const eventTypes = [
     "Donation",
@@ -33,11 +34,35 @@ function FieldIcon({ children }: { children: ReactNode }) {
 const CreateEventForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
+    const {data: session} = useSession()
+    const user = session?.user
+    // console.log(user);
 
     const handleSubmit =async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = Object.fromEntries(new FormData(event.currentTarget).entries());
         setSubmitted(true);
+        // console.log(formData);
+
+        const userData = {
+            ...formData,
+            userName:user?.name,
+            userEmail:user?.email,
+            userImage:user?.image,
+            eventCreationDate: new Date()
+        }
+        
+        
+        const response = await fetch(`http://localhost:8000/manageEvent`,{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+            },
+             body:JSON.stringify(userData)
+
+        })
+        const manageEventData = await response.json()
+        console.log(manageEventData);
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/form-datas`,{
             method:"POST",
