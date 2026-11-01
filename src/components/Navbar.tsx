@@ -29,16 +29,19 @@ const Navbar = () => {
   return (
     <header className="navbar relative z-50 border-b border-violet-200/70 bg-white/95 shadow-sm backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="navbar-start flex items-center gap-3">
+        <Link href="/" className=" navbar-start flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-700 text-white shadow-lg shadow-violet-200">
             <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 12.5 11 15l4.5-6" />
             </svg>
           </span>
-          <span className="text-lg font-bold tracking-tight text-violet-950">
+          <div>
+            <span className="text-lg font-bold tracking-tight text-violet-950">
             Impact<span className="text-violet-600">Connect</span>
           </span>
+          <p className="text-slate-500 text-xs">Creating Impact</p>
+          </div>
         </Link>
 
         <div className="navbar-center hidden md:flex">

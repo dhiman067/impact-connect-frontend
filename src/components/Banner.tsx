@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Banner = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-violet-700 via-purple-600 to-fuchsia-500 text-white">
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-violet-700 via-purple-600 to-fuchsia-500 text-white container mx-auto lg:mt-4 lg:rounded-2xl">
       <div
         aria-hidden="true"
         className="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-violet-500/30 blur-3xl"
@@ -39,7 +39,7 @@ const Banner = () => {
               </span>
             </Link>
             <Link
-              href="/create-event"
+              href="/createEventForm"
               className="group rounded-full border border-white/50 bg-white/10 px-6 py-3.5 text-sm font-bold text-white transition duration-300 ease-out hover:-translate-y-1 hover:border-white hover:bg-white hover:text-violet-950 hover:shadow-lg hover:shadow-violet-950/20 focus:outline-none focus:ring-2 focus:ring-violet-100 focus:ring-offset-2 focus:ring-offset-violet-700"
             >
               <span className="inline-flex items-center gap-2">
