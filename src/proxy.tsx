@@ -15,5 +15,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/createEventForm"], // Specify the routes the middleware applies to
+  matcher: ["/createEventForm","/manageEvents", "/joinedEvents"], // Specify the routes the middleware applies to
 };

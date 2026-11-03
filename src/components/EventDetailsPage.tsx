@@ -1,3 +1,5 @@
+'use client'
+import { useSession } from "@/lib/auth-client";
 import { Itypes } from "@/type";
 
 const formatDate = (date: string) => {
@@ -22,6 +24,27 @@ const volunteerGuidelines = [
 ];
 
 const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
+  const { data: session } = useSession()
+  const user = session?.user
+
+  const handleJoinEventData = async() => {
+    const joinEventData = {
+      ...eventData,
+      userName: user?.name,
+      userEmail: user?.email,
+      userImage: user?.image,
+      eventCreationDate: new Date()
+    }
+    const res = await fetch(`http://localhost:8000/joinedEvent` ,{
+      method:'POST',
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(joinEventData)
+    })
+    const data = await res.json()
+  }
+
   return (
     <main className="bg-slate-50 px-4 py-8 sm:px-8 lg:px-16 lg:py-12">
       <article className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-violet-100 bg-white shadow-xl shadow-violet-100/70">
@@ -72,7 +95,7 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
               </div>
             </div>
 
-            <button type="button" className="inline-flex items-center justify-center gap-2 rounded-xl bg-violet-700 px-6 py-3 text-sm font-bold text-white shadow-md shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2">
+            <button onClick={handleJoinEventData} type="button" className="inline-flex items-center justify-center gap-2 rounded-xl bg-violet-700 px-6 py-3 text-sm font-bold text-white shadow-md shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2">
               Join Event
               <span aria-hidden="true">→</span>
             </button>
