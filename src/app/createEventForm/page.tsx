@@ -15,10 +15,10 @@ const eventTypes = [
 ];
 
 const photoPresets = [
-    { label: "Winter Clothes", url: "https://unsplash.com/photos/red-and-yellow-floral-long-sleeve-shirt-1ZThgL0DIsA" },
-    { label: "Blanket Relief", url: "https://images.unsplash.com/photo-1583845112203-454c1b6c8c28" },
-    { label: "Cleanup", url: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b" },
-    { label: "Tree Plantation", url: "https://images.unsplash.com/photo-1511497584788-876760111969" },
+    { label: "Winter Clothes", url: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&q=80" },
+    { label: "Blanket Relief", url: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80" },
+    { label: "Cleanup", url: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&q=80" },
+    { label: "Tree Plantation", url: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1200&q=80" },
 ];
 
 const today = new Date().toISOString().split("T")[0];
@@ -34,11 +34,11 @@ function FieldIcon({ children }: { children: ReactNode }) {
 const CreateEventForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
-    const {data: session} = useSession()
+    const { data: session } = useSession()
     const user = session?.user
     // console.log(user);
 
-    const handleSubmit =async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = Object.fromEntries(new FormData(event.currentTarget).entries());
         setSubmitted(true);
@@ -46,34 +46,43 @@ const CreateEventForm = () => {
 
         const userData = {
             ...formData,
-            userName:user?.name,
-            userEmail:user?.email,
-            userImage:user?.image,
+            userName: user?.name,
+            userEmail: user?.email,
+            userImage: user?.image,
             eventCreationDate: new Date()
         }
-        
-        
-        const response = await fetch(`http://localhost:8000/manageEvent`,{
-            method:"POST",
-            headers:{
+
+
+        const response = await fetch(`http://localhost:8000/manageEvent`, {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json",
             },
-             body:JSON.stringify(userData)
+            body: JSON.stringify(userData)
 
         })
         const manageEventData = await response.json()
         console.log(manageEventData);
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/form-datas`,{
-            method:"POST",
-            headers:{
+
+        const eventId = manageEventData.eventId;
+
+
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/form-datas`, {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json",
             },
-            body:JSON.stringify(formData)
+            body: JSON.stringify({
+                ...userData,
+                eventId,
+                
+            })
         })
 
         const data = await res.json()
-       
+
     };
 
     return (
@@ -149,8 +158,8 @@ const CreateEventForm = () => {
                                 id="event-location"
                                 name="location"
                                 required
-                                 pattern="^[^0-9]*$"
-  title="Numbers are not allowed in the event title"
+                                pattern="^[^0-9]*$"
+                                title="Numbers are not allowed in the event title"
                                 placeholder="e.g. Mohammadpur Town Hall, Dhaka"
                                 className="event-form-input"
                             />

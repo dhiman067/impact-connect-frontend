@@ -9,6 +9,7 @@ export interface Itypes {
     userName: string,
    userEmail: string,
    eventCreationDate: string
+   eventId:string
 
 }
 

@@ -100,11 +100,11 @@ const EventCard = ({ data }: { data: Itypes }) => {
               d="M16 19a4 4 0 0 0-8 0m4-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm7 8a3 3 0 0 0-3-3m1-5a2.5 2.5 0 1 0 0-5"
             />
           </svg>
-          Community organizer
+          {data.userName}
         </div>
 
         <Link
-          href={`/events/${data._id}`}
+          href={`/events/${data.eventId}`}
           className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-violet-700 px-4 py-3 text-sm font-bold text-white shadow-sm shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2"
         >
           View Event

@@ -9,8 +9,21 @@ const JoinedEventPage = async() => {
             headers: await headers()
         })
         const user =  session?.user
-        const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent/${user?.email}`)
-            const data:Itypes[] = await res.json()
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent/${encodeURIComponent(user?.email ?? '')}`,
+            { cache: 'no-store' },
+        );
+
+        if (!res.ok) {
+            throw new Error(`Unable to load joined events: ${res.status}`);
+        }
+
+        const contentType = res.headers.get('content-type') ?? '';
+        if (!contentType.includes('application/json')) {
+            throw new Error('Joined events endpoint returned a non-JSON response.');
+        }
+
+        const data:Itypes[] = await res.json();
             
     return (
         <div>

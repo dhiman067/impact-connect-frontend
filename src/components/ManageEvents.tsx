@@ -1,5 +1,6 @@
 import { Itypes } from '@/type';
 import Link from 'next/link';
+import EditDialog from './EditDialog';
 
 const formatDate = (date: string) => {
     const parsedDate = new Date(date);
@@ -59,18 +60,12 @@ const ManageEvents = ({ manageEventData }: { manageEventData: Itypes }) => {
 
                 <div className="grid grid-cols-[1fr_auto_auto] gap-2">
                     <Link
-                        href={'#'}
+                        href={`/events/${manageEventData._id}`}
                         className="inline-flex items-center justify-center rounded-xl bg-slate-100 px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2"
                     >
                         View
                     </Link>
-                    <button
-                        type="button"
-                        className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-violet-200 bg-violet-50 px-3 py-3 text-sm font-bold text-violet-700 transition hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-violet-300 focus:ring-offset-2"
-                    >
-                        <span aria-hidden="true">✎</span>
-                        Edit
-                    </button>
+                   <EditDialog></EditDialog>
                     <button
                         type="button"
                         className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-rose-200 bg-rose-50 px-3 py-3 text-sm font-bold text-rose-600 transition hover:bg-rose-100 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:ring-offset-2"

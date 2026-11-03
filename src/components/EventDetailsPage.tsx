@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
 import { Itypes } from "@/type";
 
@@ -25,6 +26,7 @@ const volunteerGuidelines = [
 
 const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
   const { data: session } = useSession()
+  const router = useRouter()
   const user = session?.user
 
   const handleJoinEventData = async() => {
@@ -35,14 +37,19 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
       userImage: user?.image,
       eventCreationDate: new Date()
     }
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent` ,{
-      method:'POST',
-      headers:{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent`, {
+      method: 'POST',
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(joinEventData)
-    })
-    const data = await res.json()
+    });
+
+    if (!res.ok) {
+      throw new Error(`Unable to join event: ${res.status}`);
+    }
+
+    router.push("/joinedEvents");
   }
 
   return (

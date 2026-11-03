@@ -1,4 +1,5 @@
 import { Itypes } from '@/type';
+import Link from 'next/link';
 
 const formatDate = (date: string) => {
     const parsedDate = new Date(date);
@@ -84,19 +85,19 @@ const JoinedEvent = ({ joinedEventData }: { joinedEventData: Itypes }) => {
 
                 <div className="my-4 border-t border-slate-200" />
 
-                <p className="text-sm font-bold text-teal-600">
+                <p className="text-sm font-bold text-violet-600">
                     Joined {formatDate(joinedEventData.eventCreationDate)}
                 </p>
 
-                <button
+                <Link href={`/events/${joinedEventData.eventId}`}
                     type="button"
-                    className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-4 py-3 text-sm font-bold text-white shadow-sm shadow-teal-200 transition hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2"
+                   className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-violet-700 px-4 py-3 text-sm font-bold text-white shadow-sm shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2"
                 >
                     View Details
                     <span aria-hidden="true" className="text-lg leading-none">
                         →
                     </span>
-                </button>
+                </Link>
             </div>
         </article>
     );
