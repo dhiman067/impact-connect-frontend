@@ -35,7 +35,7 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
       userImage: user?.image,
       eventCreationDate: new Date()
     }
-    const res = await fetch(`http://localhost:8000/joinedEvent` ,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent` ,{
       method:'POST',
       headers:{
         "Content-Type": "application/json",
