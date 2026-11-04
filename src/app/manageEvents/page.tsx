@@ -40,10 +40,33 @@ const ManageEventPage = async() => {
                     </Link>
                 </div>
             </section>
-            <section className="mx-auto grid max-w-7xl gap-6 py-8 sm:grid-cols-2 sm:py-10 lg:grid-cols-3">
-                {data.map((event) => (
-                    <ManageEvents key={event._id} manageEventData={event} />
-                ))}
+            <section className="mx-auto max-w-7xl py-8 sm:py-10">
+                {data.length === 0 ? (
+                    <div className="rounded-2xl border border-dashed border-violet-200 bg-white px-6 py-16 text-center shadow-sm">
+                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-violet-100 text-3xl text-violet-700">
+                            <span aria-hidden="true">✣</span>
+                        </div>
+                        <h2 className="mt-5 text-2xl font-black text-violet-950">
+                            You haven&apos;t created an event yet
+                        </h2>
+                        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
+                            Start a community drive and bring people together to make a meaningful difference.
+                        </p>
+                        <Link
+                            href="/createEventForm"
+                            className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-violet-700 px-5 py-3 text-sm font-bold text-white shadow-md shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2"
+                        >
+                            <span aria-hidden="true" className="text-lg leading-none">⊕</span>
+                            Create Your First Event
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {data.map((event) => (
+                            <ManageEvents key={event._id} manageEventData={event} />
+                        ))}
+                    </div>
+                )}
             </section>
         </main>
         </div>
