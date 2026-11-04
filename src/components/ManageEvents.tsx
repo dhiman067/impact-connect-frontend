@@ -20,7 +20,7 @@ const formatDate = (date: string) => {
 
 const ManageEvents = ({ manageEventData }: { manageEventData: Itypes }) => {
     return (
-        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-base-100 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div className="relative h-56 overflow-hidden bg-violet-100">
                 <div
                     role="img"
@@ -43,7 +43,7 @@ const ManageEvents = ({ manageEventData }: { manageEventData: Itypes }) => {
             </div>
 
             <div className="p-5">
-                <h2 className="line-clamp-1 text-xl font-black capitalize text-violet-950">
+                <h2 className="line-clamp-1 text-xl font-black capitalize text-black">
                     {manageEventData.title}
                 </h2>
                 <p className="mt-2 flex items-center gap-2 text-sm text-violet-600">

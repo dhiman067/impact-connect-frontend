@@ -89,7 +89,7 @@ const PlatformFeatures = () => {
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-fuchsia-600">
             Why ImpactConnect
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-violet-950 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-black tracking-tight text-black sm:text-4xl">
             Everything you need to make a difference
           </h2>
           <p className="mt-4 text-base leading-7 text-violet-700/80">
@@ -102,14 +102,14 @@ const PlatformFeatures = () => {
           {features.map((feature) => (
             <article
               key={feature.title}
-              className="group rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-violet-200 hover:shadow-xl hover:shadow-violet-100/70"
+              className="group rounded-3xl border border-violet-100 bg-base-100 p-6 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-violet-200 hover:shadow-xl hover:shadow-violet-100/70"
             >
               <div
                 className={`flex h-12 w-12 items-center justify-center rounded-2xl ${feature.background} ${feature.color} transition duration-300 group-hover:scale-110`}
               >
                 {feature.icon}
               </div>
-              <h3 className="mt-6 text-lg font-bold text-violet-950">
+              <h3 className="mt-6 text-lg font-bold text-black">
                 {feature.title}
               </h3>
               <p className="mt-3 text-sm leading-6 text-violet-700/75">

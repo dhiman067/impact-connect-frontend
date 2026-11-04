@@ -11,7 +11,7 @@ const EventPage = async() => {
         <div>
             <div>
                
-<div className="bg-white px-5 py-12 sm:px-8 lg:px-16">
+<div className="bg-base-100 px-5 py-12 sm:px-8 lg:px-16">
   <div className="mx-auto max-w-7xl">
     <div className="flex flex-col gap-6 border-b border-violet-100 pb-8 lg:flex-row lg:items-end lg:justify-between">
       <div>

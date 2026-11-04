@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @import "@heroui/styles"; 
-
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* I used globals.css because HeroUI was overriding some of the Tailwind utility classes, causing the input borders, backgrounds, and focus styles to disappear. */
 

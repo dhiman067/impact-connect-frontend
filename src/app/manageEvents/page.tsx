@@ -15,7 +15,7 @@ const ManageEventPage = async() => {
 
     return (
         <div>
-             <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
+             <main className="min-h-screen bg-base-100 px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
             <section className="mx-auto max-w-7xl border-b border-slate-200 pb-7 sm:pb-8">
                 <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
                     <div>

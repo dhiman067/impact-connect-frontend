@@ -53,8 +53,8 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
   }
 
   return (
-    <main className="bg-slate-50 px-4 py-8 sm:px-8 lg:px-16 lg:py-12">
-      <article className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-violet-100 bg-white shadow-xl shadow-violet-100/70">
+    <main className="bg-base-100 px-4 py-8 sm:px-8 lg:px-16 lg:py-12">
+      <article className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-violet-100 bg-base-100 shadow-xl shadow-violet-100/70">
         <div
           className="relative flex min-h-[22rem] items-end bg-cover bg-center px-6 py-8 sm:px-10 lg:px-12"
           style={{ backgroundImage: `url("${eventData.image}")` }}

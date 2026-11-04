@@ -70,8 +70,8 @@ const CreateEventForm = () => {
     };
 
     return (
-        <main className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 sm:py-14">
-            <div className="mx-auto max-w-[630px] rounded-xl border border-slate-200 bg-white px-5 py-7 shadow-[0_8px_24px_rgba(15,23,42,0.08)] sm:px-9 sm:py-8">
+        <main className="min-h-screen bg-base-100 px-4 py-10 sm:px-6 sm:py-14">
+            <div className="mx-auto bg-base-100 max-w-[630px] rounded-xl border border-slate-200  px-5 py-7 shadow-[0_8px_24px_rgba(15,23,42,0.08)] sm:px-9 sm:py-8">
                 <div className="mb-8">
                     <span className="inline-flex items-center gap-2 rounded-full bg-violet-50 px-3 py-1 text-xs font-bold text-violet-600">
                         <span aria-hidden="true">✣</span>
@@ -85,12 +85,12 @@ const CreateEventForm = () => {
                     </p>
                 </div>
 
-                <form className="space-y-5" onSubmit={handleSubmit}>
+                <form className="space-y-5 bg-base-100" onSubmit={handleSubmit}>
                     <div>
                         <Label htmlFor="event-title" className="event-form-label">
                             Event Title <span className="required-mark">*</span>
                         </Label>
-                        <div className="event-input-shell">
+                        <div className="event-input-shell bg-base-100">
                             <FieldIcon>T</FieldIcon>
                             <input
                                 id="event-title"
@@ -109,9 +109,9 @@ const CreateEventForm = () => {
                             <Label htmlFor="event-type" className="event-form-label">
                                 Event Type <span className="required-mark">*</span>
                             </Label>
-                            <div className="event-input-shell">
+                            <div className="event-input-shell bg-base-100">
                                 <FieldIcon>◇</FieldIcon>
-                                <select id="event-type" name="type" required className="event-form-input appearance-none">
+                                <select id="event-type" name="type" required className="event-form-input appearance-none bg-base-100">
                                     {eventTypes.map((type) => (
                                         <option key={type}>{type}</option>
                                     ))}
@@ -124,7 +124,7 @@ const CreateEventForm = () => {
                             <Label htmlFor="event-date" className="event-form-label">
                                 Event Date <span className="required-mark">*</span>
                             </Label>
-                            <div className="event-input-shell">
+                            <div className="event-input-shell bg-base-100">
                                 <FieldIcon>▣</FieldIcon>
                                 <input id="event-date" name="date" type="date" min={today} required className="event-form-input" />
                             </div>
@@ -136,7 +136,7 @@ const CreateEventForm = () => {
                         <Label htmlFor="event-location" className="event-form-label">
                             Location / Venue <span className="required-mark">*</span>
                         </Label>
-                        <div className="event-input-shell">
+                        <div className="event-input-shell bg-base-100">
                             <FieldIcon>⌖</FieldIcon>
                             <input
                                 id="event-location"
@@ -154,7 +154,7 @@ const CreateEventForm = () => {
                         <Label htmlFor="event-image" className="event-form-label">
                             Thumbnail Image URL <span className="required-mark">*</span>
                         </Label>
-                        <div className="event-input-shell">
+                        <div className="event-input-shell bg-base-100">
                             <FieldIcon>▧</FieldIcon>
                             <input
                                 id="event-image"
@@ -194,13 +194,13 @@ const CreateEventForm = () => {
                             required
                             rows={4}
                             placeholder="Explain the purpose of the drive, volunteers required, items being distributed, or tasks to complete..."
-                            className="event-form-input min-h-28 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3.5 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
+                            className="event-form-input min-h-28 w-full resize-y rounded-xl border border-slate-200 bg-base-100 px-3.5 py-3.5 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
                         />
                     </div>
 
-                    <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3.5 text-xs text-slate-500">
+                    <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-base-100 px-3.5 py-3.5 text-xs text-slate-500">
                         <span>Organizer Email attached:</span>
-                        <strong className="text-[11px] text-slate-700">user</strong>
+                        <strong className="text-[11px] text-slate-700">{user?.name}</strong>
                     </div>
 
                     <Button

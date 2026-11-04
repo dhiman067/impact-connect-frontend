@@ -18,7 +18,7 @@ const formatDate = (date: string) => {
 
 const JoinedEvent = ({ joinedEventData }: { joinedEventData: Itypes }) => {
     return (
-        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-base-100 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div className="relative h-56 overflow-hidden bg-violet-100">
                 <div
                     aria-label={joinedEventData.title}

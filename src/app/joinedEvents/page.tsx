@@ -28,7 +28,7 @@ const JoinedEventPage = async() => {
     return (
         <div>
            
-  <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
+  <main className="min-h-screen bg-base-100 px-5 py-8 sm:px-8 sm:py-10 lg:px-16">
     <section className="mx-auto max-w-7xl border-b border-slate-200 pb-7 sm:pb-8">
       <span className="inline-flex items-center gap-2 rounded-full bg-violet-100 px-3.5 py-1.5 text-xs font-bold text-violet-700">
         <span aria-hidden="true">✓</span>

@@ -1,16 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { CircleCheck, CirclePlus, LogOut, Settings } from "lucide-react";
+import { useEffect, useState } from "react";
+import { CircleCheck, CirclePlus, LogOut, Settings, Sun, Moon } from "lucide-react";
 import { signOut, useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
+
+
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return window.localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
+  const toggleTheme = () => {
+    if (darkMode) {
+      localStorage.setItem("theme", "light");
+      setDarkMode(false);
+    } else {
+      localStorage.setItem("theme", "dark");
+      setDarkMode(true);
+    }
+  };
+
+
   const { data: session } = useSession();
   const user = session?.user;
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const avatar = (
     <div className="avatar placeholder">
       <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-violet-100 text-sm font-bold text-violet-700 ring-2 ring-violet-200">
@@ -28,17 +52,17 @@ const Navbar = () => {
   );
 
   return (
-    <header className="navbar sticky top-0 z-50 border-b border-violet-200/70 bg-white/95 shadow-sm backdrop-blur">
+    <header className="navbar sticky top-0 z-50 border-b border-violet-200/70 bg-base-100 shadow-sm backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className=" navbar-start flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-700 text-white shadow-lg shadow-violet-200">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-700 text-white shadow-lg ">
             <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 12.5 11 15l4.5-6" />
             </svg>
           </span>
           <div>
-            <span className="text-lg font-bold tracking-tight text-violet-950">
+            <span className="text-lg font-bold tracking-tight text-black">
               Impact<span className="text-violet-600">Connect</span>
             </span>
             <p className="text-slate-500 text-xs">Creating Impact</p>
@@ -55,6 +79,19 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end gap-2">
+
+
+
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle Theme"
+            className="btn btn-circle btn-ghost"
+          >
+            {darkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} />}
+          </button>
+
+
+
           {user ? (
             <div className="dropdown dropdown-end hidden md:block">
               <button
