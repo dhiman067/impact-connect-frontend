@@ -54,7 +54,7 @@ const EventPage = async() => {
 </div>
 
             </div>
-            <div className="mx-auto grid max-w-7xl gap-6 bg-slate-50 px-5 py-10 sm:grid-cols-2 sm:px-8 lg:grid-cols-3 lg:px-16">
+            <div className="mx-auto grid max-w-7xl gap-6  px-5 py-10 sm:grid-cols-2 sm:px-8 lg:grid-cols-3 lg:px-16">
               {data.map((d) => <EventCard key={d._id} data={d} />)}
             </div>
         </div>

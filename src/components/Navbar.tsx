@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { CircleCheck, CirclePlus, LogOut, Settings } from "lucide-react";
 import { signOut, useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
@@ -27,7 +28,7 @@ const Navbar = () => {
   );
 
   return (
-    <header className="navbar relative z-50 border-b border-violet-200/70 bg-white/95 shadow-sm backdrop-blur">
+    <header className="navbar sticky top-0 z-50 border-b border-violet-200/70 bg-white/95 shadow-sm backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className=" navbar-start flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-700 text-white shadow-lg shadow-violet-200">
@@ -74,12 +75,28 @@ const Navbar = () => {
                     <small className="block truncate text-slate-500">{user.email}</small>
                   </span>
                 </li>
-                <li><Link href={'/createEventForm'} type="button">＋ Create Event</Link></li>
-                <li><Link href={'/manageEvents'}>⚙ Manage Events</Link></li>
-                <li><Link href={'joinedEvents'}>✓ Joined Events</Link></li>
+                <li>
+                  <Link href="/createEventForm" className="flex items-center gap-2">
+                    <CirclePlus aria-hidden="true" size={17} className="text-violet-600" />
+                    Create Event
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/manageEvents" className="flex items-center gap-2">
+                    <Settings aria-hidden="true" size={17} className="text-violet-600" />
+                    Manage Events
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/joinedEvents" className="flex items-center gap-2">
+                    <CircleCheck aria-hidden="true" size={17} className="text-violet-600" />
+                    Joined Events
+                  </Link>
+                </li>
                 <li className="mt-1 border-t border-violet-100 pt-1">
                   <button type="button" onClick={() => signOut()} className="text-red-500 hover:bg-red-50">
-                    ↪ LogOut
+                    <LogOut aria-hidden="true" size={17} />
+                    Log Out
                   </button>
                 </li>
               </ul>
@@ -118,11 +135,27 @@ const Navbar = () => {
                     </li>
                     {isProfileOpen && (
                       <li className="border-t border-violet-100 pt-1">
-                        <li><Link href={'/createEventForm'} type="button">＋ Create Event</Link></li>
-                        <li><Link href={'/manageEvents'}>⚙ Manage Events</Link></li>
-                        <li><Link href={'joinedEvents'}>✓ Joined Events</Link></li>
+                        <li>
+                          <Link href="/createEventForm" className="flex items-center gap-2">
+                            <CirclePlus aria-hidden="true" size={17} className="text-violet-600" />
+                            Create Event
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/manageEvents" className="flex items-center gap-2">
+                            <Settings aria-hidden="true" size={17} className="text-violet-600" />
+                            Manage Events
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/joinedEvents" className="flex items-center gap-2">
+                            <CircleCheck aria-hidden="true" size={17} className="text-violet-600" />
+                            Joined Events
+                          </Link>
+                        </li>
                         <button type="button" onClick={() => signOut()} className="text-red-500 hover:bg-red-50">
-                          ↪ LogOut
+                          <LogOut aria-hidden="true" size={17} />
+                          Log Out
                         </button>
                       </li>
                     )}
