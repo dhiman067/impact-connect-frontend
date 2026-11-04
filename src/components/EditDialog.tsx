@@ -39,7 +39,7 @@ const EditDialog = ({ manageEventData }: { manageEventData: Itypes }) => {
         const { _id, ...updatedData } = formData
 
 
-        const res = await fetch(`http://localhost:8000/allEvents/${manageEventData._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/allEvents/${manageEventData._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -173,7 +173,7 @@ const EditDialog = ({ manageEventData }: { manageEventData: Itypes }) => {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button type="button" variant="tertiary" onPress={state.close}>Cancel</Button>
-                                <Button type="submit" variant="primary">Edit Event</Button>
+                                <Button className="bg-violet-700" type="submit" variant="primary">Edit Event</Button>
                             </Modal.Footer>
                         </form>
                     </Modal.Dialog>
