@@ -104,7 +104,7 @@ const EventCard = ({ data }: { data: Itypes }) => {
         </div>
 
         <Link
-          href={`/events/${data.eventId}`}
+          href={`/events/${data._id}`}
           className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-violet-700 px-4 py-3 text-sm font-bold text-white shadow-sm shadow-violet-200 transition hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2"
         >
           View Event

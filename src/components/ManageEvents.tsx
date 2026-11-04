@@ -65,7 +65,7 @@ const ManageEvents = ({ manageEventData }: { manageEventData: Itypes }) => {
                     >
                         View
                     </Link>
-                   <EditDialog></EditDialog>
+                    <EditDialog manageEventData={manageEventData} />
                     <button
                         type="button"
                         className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-rose-200 bg-rose-50 px-3 py-3 text-sm font-bold text-rose-600 transition hover:bg-rose-100 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:ring-offset-2"

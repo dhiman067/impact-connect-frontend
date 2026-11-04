@@ -53,19 +53,19 @@ const CreateEventForm = () => {
         }
 
 
-        const response = await fetch(`http://localhost:8000/manageEvent`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userData)
+        // const response = await fetch(`http://localhost:8000/manageEvent`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(userData)
 
-        })
-        const manageEventData = await response.json()
-        console.log(manageEventData);
+        // })
+        // const manageEventData = await response.json()
+        // console.log(manageEventData);
 
 
-        const eventId = manageEventData.eventId;
+        // const eventId = manageEventData.eventId;
 
 
 
@@ -74,11 +74,7 @@ const CreateEventForm = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                ...userData,
-                eventId,
-                
-            })
+            body: JSON.stringify(userData)
         })
 
         const data = await res.json()
