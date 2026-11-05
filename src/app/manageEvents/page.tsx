@@ -1,5 +1,6 @@
 import ManageEvents from '@/components/ManageEvents';
 import { auth } from '@/lib/auth';
+import { getTokenFromServer } from '@/lib/jwtTokenFromServer';
 import { Itypes } from '@/type';
 import { headers } from 'next/headers';
 import Link from 'next/link';
@@ -10,7 +11,14 @@ const ManageEventPage = async() => {
         headers: await headers()
     })
     const user =  session?.user
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/manageEvent/${user?.email}`)
+
+    const token = await getTokenFromServer()
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/manageEvent/${user?.email}`,{
+        headers:{
+            authorization: `Bearer ${token}`
+        }
+    })
     const data:Itypes[] = await res.json()
 
     return (
