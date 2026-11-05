@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ImpactConnect
 
-## Getting Started
+## Project Description
 
-First, run the development server:
+ImpactConnect is a community-focused web platform that connects people with meaningful social initiatives and volunteer opportunities. Users can discover upcoming events, create and manage community events, join events, and track their volunteer commitments.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- User registration and login
+- Google authentication
+- Browse upcoming community events
+- View detailed event information
+- Search and filter events
+- Create new events
+- Manage created events
+- Join volunteer events
+- View joined events
+- Dark and light theme support
+- Responsive design for mobile and desktop
+- Toast notifications for user actions
+- Protected routes for authenticated users
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Frontend
 
-## Learn More
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- HeroUI
+- Lucide React
+- React Toastify
 
-To learn more about Next.js, take a look at the following resources:
+### Authentication
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Better Auth
+- JWT authentication
+- Google OAuth
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Database
 
-## Deploy on Vercel
+- MongoDB
+- MongoDB Adapter for Better Auth
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tools and Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Vercel
