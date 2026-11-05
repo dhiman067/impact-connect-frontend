@@ -3,6 +3,8 @@ import EventDetailsPage from '@/components/EventDetailsPage';
 import { Itypes } from '@/type';
 import React from 'react';
 
+export const instant = false;
+
 const EventDetails = async({params}: {
   params: Promise<{ id: string }>}) => {
     const {id} = await params

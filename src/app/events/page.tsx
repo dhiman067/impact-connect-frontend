@@ -3,6 +3,7 @@ import EventFilters from "@/components/EventFilters";
 
 import { Itypes } from "@/type";
 
+export const instant = false;
 
 const EventPage = async() => {
 

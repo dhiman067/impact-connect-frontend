@@ -4,6 +4,8 @@ import UpcomingEvents from "@/components/UpcomingEvents";
 import VisualsStorySection from "@/components/VisualsStorySection";
 import NewsLetterForm from "@/components/NewsLetterForm";
 
+export const instant = false;
+
 export default function Home() {
   return (
   <div>

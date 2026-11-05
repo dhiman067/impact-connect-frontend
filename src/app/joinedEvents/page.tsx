@@ -5,6 +5,8 @@ import { Itypes } from '@/type';
 import { headers } from 'next/headers';
 import React from 'react';
 
+export const instant = false;
+
 const JoinedEventPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers()

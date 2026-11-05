@@ -1,7 +1,15 @@
-'use client'
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+    const [year, setYear] = useState<number | null>(null);
+
+    useEffect(() => {
+        setYear(new Date().getFullYear());
+    }, []);
+
     return (
         <footer className="border-t border-violet-200/70 bg-base-100">
             <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.5fr_1fr_1fr] lg:px-16">
@@ -50,7 +58,7 @@ const Footer = () => {
 
             <div className="border-t border-violet-100">
                 <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-16">
-                    <p>© {new Date().getFullYear()} ImpactConnect. All rights reserved.</p>
+                    <p>© {year ?? ""} ImpactConnect. All rights reserved.</p>
                     <p>Made for communities that care.</p>
                 </div>
             </div>

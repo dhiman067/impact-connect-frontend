@@ -6,6 +6,8 @@ import { headers } from 'next/headers';
 import Link from 'next/link';
 import React from 'react';
 
+export const instant = false;
+
 const ManageEventPage = async() => {
     const session = await auth.api.getSession({
         headers: await headers()
