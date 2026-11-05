@@ -36,24 +36,30 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
 
       const joinEventData = {
         ...eventData,
+        eventId: eventData._id,
         userName: user?.name,
         userEmail: user?.email,
         userImage: user?.image,
         eventCreationDate: new Date()
       }
-      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent`, {
-        method: 'POST',
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? process.env.NEXT_PUBLIC_LOCAL_URL;
+
+      if (!apiUrl) {
+        throw new Error("The API URL is not configured.");
+      }
+
+      const res = await fetch(`${apiUrl}/joinedEvent`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        
-        body: JSON.stringify(joinEventData)
+        body: JSON.stringify(joinEventData),
       });
-  
+
       if (!res.ok) {
         throw new Error(`Unable to join event: ${res.status}`);
       }
-      else{
+
          toast.success('You Joined the event!', {
                 position: "top-center",
                 autoClose: 3000,
@@ -65,11 +71,7 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
                 theme: "light",
                 transition: Zoom,
             });
-        router.push("/joinedEvents");
-      }
-      
-
-      
+            router.push("/joinedEvents");
     }
     else{
        toast.warning('You have to sign in to join', {

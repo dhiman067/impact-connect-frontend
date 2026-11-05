@@ -15,7 +15,11 @@ const JoinedEventPage = async () => {
 
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent/${encodeURIComponent(user?.email ?? '')}`
+    `${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent/${encodeURIComponent(user?.email ?? '')}`,
+    {
+      cache: 'no-store',
+      
+    },
   );
 
   if (!res.ok) {
