@@ -14,8 +14,12 @@ const ManageEventPage = async() => {
     })
     const user =  session?.user
 
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/manageEvent/${user?.email}`)
+    const token = await getTokenFromServer()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/manageEvent/${user?.email}`,{
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const data:Itypes[] = await res.json()
 
     return (

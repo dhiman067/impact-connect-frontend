@@ -13,11 +13,14 @@ const JoinedEventPage = async () => {
   })
   const user = session?.user
 
-
+const token = await getTokenFromServer()
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent/${encodeURIComponent(user?.email ?? '')}`,
     {
       cache: 'no-store',
+      headers:{
+        authorization: `Bearer ${token}`
+      }
       
     },
   );
