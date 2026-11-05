@@ -5,6 +5,7 @@ import { type FormEvent, useState } from "react";
 import { Button, Label } from "@heroui/react";
 import { signUp } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import { toast, Zoom } from "react-toastify";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -61,11 +62,31 @@ const SignUpPage = () => {
     })
 
     if(data){
-        console.log(data);
+         toast.success('Account Created Successfully!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
         redirect('/')
     }
     else{
-        console.log(error);
+         toast.error('Something Went Wrong!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
     }
 
   };

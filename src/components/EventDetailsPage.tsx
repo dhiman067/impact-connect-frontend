@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
 import { Itypes } from "@/type";
+import { toast, Zoom } from "react-toastify";
 
 const formatDate = (date: string) => {
   const parsedDate = new Date(date);
@@ -30,26 +31,61 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
   const user = session?.user
 
   const handleJoinEventData = async() => {
-    const joinEventData = {
-      ...eventData,
-      userName: user?.name,
-      userEmail: user?.email,
-      userImage: user?.image,
-      eventCreationDate: new Date()
-    }
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(joinEventData)
-    });
 
-    if (!res.ok) {
-      throw new Error(`Unable to join event: ${res.status}`);
+    if(user){
+
+      const joinEventData = {
+        ...eventData,
+        userName: user?.name,
+        userEmail: user?.email,
+        userImage: user?.image,
+        eventCreationDate: new Date()
+      }
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        
+        body: JSON.stringify(joinEventData)
+      });
+  
+      if (!res.ok) {
+        throw new Error(`Unable to join event: ${res.status}`);
+      }
+      else{
+         toast.success('You Joined the event!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
+        router.push("/joinedEvents");
+      }
+      
+
+      
+    }
+    else{
+       toast.warning('You have to sign in to join', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
+      router.push("/login")
     }
 
-    router.push("/joinedEvents");
   }
 
   return (

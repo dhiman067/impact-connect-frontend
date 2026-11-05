@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CircleCheck, CirclePlus, LogOut, Settings, Sun, Moon } from "lucide-react";
 import { signOut, useSession } from "@/lib/auth-client";
+import { toast, Zoom } from "react-toastify";
 
 const Navbar = () => {
 
@@ -131,7 +132,19 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="mt-1 border-t border-violet-100 pt-1">
-                  <button type="button" onClick={() => signOut()} className="text-red-500 hover:bg-red-50">
+                  <button type="button" onClick={() => {signOut();
+                     toast.success('Logout Successful!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
+                  }} className="text-red-500 hover:bg-red-50">
                     <LogOut aria-hidden="true" size={17} />
                     Log Out
                   </button>

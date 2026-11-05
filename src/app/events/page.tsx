@@ -1,19 +1,15 @@
 import EventCard from "@/components/eventCard";
 import EventFilters from "@/components/EventFilters";
-import { getTokenFromServer } from "@/lib/jwtTokenFromServer";
+
 import { Itypes } from "@/type";
 
 
 const EventPage = async() => {
 
 
-  const token = await getTokenFromServer()
+  
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/allEvents`,{
-      headers:{
-        authorization: `Bearer ${token}`
-      }
-    })
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/allEvents`)
     const data:Itypes[] = await res.json()
     
     return (

@@ -5,6 +5,7 @@ import { type FormEvent, useState } from "react";
 import { Button, Label } from "@heroui/react";
 import { signIn } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import { toast, Zoom } from "react-toastify";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +24,17 @@ const LoginPage = () => {
     })
 
     if(data){
-      console.log(data);
+       toast.success('Login Successful', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
       redirect('/')
     }
     else{

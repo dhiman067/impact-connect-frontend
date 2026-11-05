@@ -3,6 +3,8 @@
 import { type FormEvent, type ReactNode, useState } from "react";
 import { Button, Label, TextArea } from "@heroui/react";
 import { useSession } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+import { toast, Zoom } from "react-toastify";
 
 const eventTypes = [
     "Donation",
@@ -66,6 +68,20 @@ const CreateEventForm = () => {
         })
 
         const data = await res.json()
+
+
+         toast.success('Event Created!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
+        redirect("/events")
 
     };
 

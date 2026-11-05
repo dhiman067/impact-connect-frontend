@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Modal, useOverlayState } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { Itypes } from "@/type";
+import { toast, Zoom } from "react-toastify";
 
 const DeleteEventDialog = ({ manageEventData }: { manageEventData: Itypes }) => {
     const router = useRouter();
@@ -23,9 +24,23 @@ const DeleteEventDialog = ({ manageEventData }: { manageEventData: Itypes }) => 
             if (!response.ok) {
                 throw new Error("The event could not be deleted.");
             }
+            else{
+                 toast.error('Event deleted successfully', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
 
-            state.close();
-            router.refresh();
+                state.close();
+                router.refresh();
+            }
+
         } catch (deleteError) {
             setError(deleteError instanceof Error ? deleteError.message : "The event could not be deleted.");
         } finally {

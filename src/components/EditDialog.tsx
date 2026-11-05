@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { Button, Input, Modal, TextArea, useOverlayState } from "@heroui/react";
 import { Itypes } from "@/type";
 import { useRouter } from "next/navigation";
+import { toast, Zoom } from "react-toastify";
 
 const eventTypes = [
     "Donation",
@@ -47,6 +48,20 @@ const EditDialog = ({ manageEventData }: { manageEventData: Itypes }) => {
             body: JSON.stringify(updatedData)
         })
         const data = await res.json()
+
+        if(res.ok){
+             toast.success('Event edited successfully', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
+        }
         router.refresh()
 
         state.close();
