@@ -33,22 +33,19 @@ const EventDetailsPage = ({ eventData }: { eventData: Itypes }) => {
   const handleJoinEventData = async() => {
 
     if(user){
+      const {_id,...updatedEventData} = eventData
 
       const joinEventData = {
-        ...eventData,
+        ...updatedEventData,
         eventId: eventData._id,
         userName: user?.name,
         userEmail: user?.email,
         userImage: user?.image,
         eventCreationDate: new Date()
       }
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? process.env.NEXT_PUBLIC_LOCAL_URL;
+      
 
-      if (!apiUrl) {
-        throw new Error("The API URL is not configured.");
-      }
-
-      const res = await fetch(`${apiUrl}/joinedEvent`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/joinedEvent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
