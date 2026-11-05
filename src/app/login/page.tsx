@@ -11,11 +11,11 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("")
 
-  const handleSubmit = async(event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const loginData = Object.fromEntries(formData.entries())as{email:string, password:string}
+    const loginData = Object.fromEntries(formData.entries()) as { email: string, password: string }
 
     console.log("Login data:", loginData);
 
@@ -23,24 +23,30 @@ const LoginPage = () => {
       ...loginData
     })
 
-    if(data){
-       toast.success('Login Successful', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Zoom,
-            });
+    if (data) {
+      toast.success('Login Successful', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+      });
       redirect('/')
     }
-    else{
+    else {
       setErrorMessage(error?.message as string)
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    const googleData = await signIn.social({
+      provider: 'google'
+    })
+  }
 
   return (
     <main className="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-slate-50 px-4 py-12 sm:py-16">
@@ -183,11 +189,16 @@ const LoginPage = () => {
         </div>
 
         <Button
+          onClick={handleGoogleSignIn}
           type="button"
           variant="outline"
-          className="w-full rounded-xl border-violet-100 bg-white py-3 text-sm font-bold text-violet-950 hover:bg-violet-50"
+          className="w-full rounded-xl border-violet-100 bg-white py-3 text-sm font-bold  hover:bg-violet-50"
         >
-          <span className="font-black text-fuchsia-500">G</span>
+          {/* <span className="font-black text-fuchsia-500">G</span> */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google text-purple-700" viewBox="0 0 16 16">
+            <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z" />
+          </svg>
+
           Continue with Google
         </Button>
 
