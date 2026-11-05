@@ -3,7 +3,16 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { jwt } from "better-auth/plugins";
 
-const client = new MongoClient(process.env.MONGODB_URL as string);
+const mongodbUri =
+    process.env.MONGODB_URI ??
+    process.env.MONGODB_URL ??
+    process.env.MONGODB_URl;
+
+if (!mongodbUri) {
+    throw new Error("Missing MONGODB_URI environment variable.");
+}
+
+const client = new MongoClient(mongodbUri);
 const db = client.db("ImpactConnect");
 
 export const auth = betterAuth({
